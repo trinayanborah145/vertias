@@ -21,7 +21,6 @@ const clientLogos = [
   '461806440_1259206868294615_1179500325135367093_n.jpg',
   '462375667_1725972738234643_118844111912548940_n.jpg',
   '470043160_1212662949799398_9175767297572834839_n.jpg',
-  '475946271_1131674394829512_4690654875343203918_n.jpg',
   '476475103_2809148452616407_6000995653861091031_n.jpg',
   '483046703_3082915668529894_1633718318472618787_n.jpg'
 ].map((logo, index) => ({
@@ -277,45 +276,49 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Trusted by <span className="gradient-text">Industry Leaders</span>
+              Our <span className="gradient-text">Clients</span>
             </h2>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              We're proud to collaborate with innovative companies across various industries
+              We're proud to collaborate with innovative brands across various industries
             </p>
           </div>
           
           <div className="relative overflow-hidden">
-            <div className="flex items-center py-6 whitespace-nowrap">
-              {/* First set of logos */}
-              <div className="flex items-center animate-scroll">
-                {clientLogos.map((logo) => (
-                  <div key={logo.id} className="flex-shrink-0 px-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-40 h-32 flex items-center justify-center p-2">
-                      <img 
-                        src={logo.src} 
-                        alt={logo.alt}
-                        className="max-h-full max-w-full object-contain"
-                        loading="lazy"
-                      />
-                    </div>
+            <div className="py-6">
+              <div className="relative w-full overflow-hidden">
+                <div className="flex items-center whitespace-nowrap">
+                  {/* First set of logos */}
+                  <div className="flex items-center pr-4 animate-scroll">
+                    {clientLogos.map((logo) => (
+                      <div key={logo.id} className="flex-shrink-0 px-2 sm:px-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-20 h-20 md:w-40 md:h-32 flex items-center justify-center p-1 md:p-2">
+                          <img 
+                            src={logo.src} 
+                            alt={logo.alt}
+                            className="max-h-[80px] max-w-[80px] md:max-h-full md:max-w-full object-contain"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              
-              {/* Duplicate for seamless loop */}
-              <div className="flex items-center animate-scroll" aria-hidden="true">
-                {clientLogos.map((logo) => (
-                  <div key={`dup-${logo.id}`} className="flex-shrink-0 px-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-40 h-32 flex items-center justify-center p-2">
-                      <img 
-                        src={logo.src} 
-                        alt=""
-                        className="max-h-full max-w-full object-contain"
-                        loading="lazy"
-                      />
-                    </div>
+                  
+                  {/* Duplicate for seamless loop */}
+                  <div className="flex items-center pr-4 animate-scroll" aria-hidden="true">
+                    {clientLogos.map((logo) => (
+                      <div key={`dup-${logo.id}`} className="flex-shrink-0 px-2 sm:px-4 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-20 h-20 md:w-40 md:h-32 flex items-center justify-center p-1 md:p-2">
+                          <img 
+                            src={logo.src} 
+                            alt={logo.alt}
+                            className="max-h-[80px] max-w-[80px] md:max-h-full md:max-w-full object-contain"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
             </div>
           </div>
@@ -324,11 +327,21 @@ const Index = () => {
         <style dangerouslySetInnerHTML={{
           __html: `
             @keyframes scroll {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(calc(-200px * ${clientLogos.length / 2})); }
+              0% { 
+                transform: translateX(0); 
+              }
+              100% { 
+                transform: translateX(-50%); 
+              }
             }
             .animate-scroll {
-              animation: scroll ${clientLogos.length * 5}s linear infinite;
+              display: inline-flex;
+              animation: scroll ${clientLogos.length * 3}s linear infinite;
+              will-change: transform;
+              padding-right: 4rem;
+            }
+            .animate-scroll > * {
+              flex: 0 0 auto;
             }
           `
         }} />
@@ -361,7 +374,7 @@ const Index = () => {
                   </div>
                   <div className="text-gray-300">Happy Clients</div>
                 </div>
-                <div className="text-center">
+                <div className="text-center">  
                   <div className="text-3xl font-bold text-gold mb-2 transition-all duration-1000">
                     {successRate}%
                   </div>
@@ -459,9 +472,9 @@ const Index = () => {
           </div>
           
           <div className="relative">
-            <div className="flex space-x-6 pb-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <div className="flex space-x-4 sm:space-x-6 pb-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-2">
               {portfolioVideos.map((video) => (
-                <div key={video.id} className="flex-shrink-0 w-80 h-[calc(80vh)] snap-center">
+                <div key={video.id} className="flex-shrink-0 w-[45vw] sm:w-64 md:w-80 h-[50vh] sm:h-[60vh] md:h-[70vh] snap-center">
                   <div className="relative w-full h-full rounded-xl overflow-hidden bg-black border border-gold/20 group">
                     {/* Video Element */}
                     <video
